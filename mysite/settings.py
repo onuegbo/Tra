@@ -160,11 +160,7 @@ DATABASES = {
     }
 }
 
-    #    C:\Program Files\PostgreSQL\10
-	#    C:\Program Files\PostgreSQL\10\data
-	#    mojay111
-	#    port: 5432
-	   
+    
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
