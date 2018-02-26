@@ -1,0 +1,36 @@
+{% extends 'base1.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Compagnie de Transport</li>
+{% endblock %}
+
+  
+{% block content %}
+
+
+<!-- table-responsive table table-hover -->
+
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr >
+          <th> Agences</th>
+          <th>Siege</th>
+          <th>Telephone</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for company in companies %}
+          <tr >
+            <td>
+              <a class="nav-link" href="{{company.get_absolute_url}}">{{ company.name }}
+              <small class="text-muted d-block">{{company.description}}</small>
+            </td>
+            <td class="align-middle">{{ company.location }}</td>
+            <td class="align-middle">0{{ company.numero_telephone }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+ 
+{% endblock %}

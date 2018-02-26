@@ -1,0 +1,52 @@
+{% extends 'base1.html' %}
+
+
+{% block title %}Checkout{% endblock %}
+
+{% block breadcrumb %}
+
+                <li class="breadcrumb-item"> <a href={% url 'etrans:home' %}>Compagnie</a></li>
+                <li class="breadcrumb-item active">Tickets</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Checkout</h1>
+    
+    <div class="container">
+            <div class="row">
+
+                    <div class="col-6">
+                            <form action="." method="post" class="order-form">
+                                    
+                                        {% csrf_token %}
+                                        {% include 'orders/includes/form.html' %}
+                                        <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+                                        
+                            </form>
+                            
+                    </div>
+                    
+                    <div class="col">
+                            <h3>Vos Ticket(s)</h3>
+                            <ul>
+                                {% for item in cart %}
+                                    <li>
+                                        {{ item.ticket.id }} x  {{ item.quantity }}x {{ item.ticket.bus_name }} 
+                                    <span>Fcfa: {{ item.total_price }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        <p>Totaux: Fcfa {{ cart.get_total_price }}</p>
+                    </div>
+
+                    
+                    
+            </div>
+        
+    </div>
+
+
+
+    
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base1.html' %}
+
+{% block title %}{{ ticket.bus_type }}{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'etrans:home' %}">Etrans</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'etrans:details' company.pk  %}">{{ company.company_name }}</a></li>
+  <li class="breadcrumb-item active">{{ company.bus_type }}</li>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

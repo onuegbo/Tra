@@ -1,0 +1,54 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %} {% if companies %}{{ companies.name }}{% else %}tickets{% endif %}{% endblock %}
+
+
+
+{% block breadcrumb %}
+
+                <li class="breadcrumb-item"> <a href={% url 'core:home' %}>Compagnie</a></li>
+                
+{% endblock %}
+
+
+
+
+{% block content %}
+        
+<div class="container">
+        {% for c in companies %}
+        <div class="row">
+                <div class="col-sm">
+                        <li {% if company.slug == c.slug %}class="selected"{% endif %}>
+                                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                        </li>
+                </div> 
+        </div>
+        {% endfor %}
+</div>
+    
+      
+
+
+        <h1>
+        {% if company %}
+                {{ company.name }}
+        {% else %}
+                tickets
+        
+        {% endif %}</h1>
+
+
+        {% for product in products %}
+            <div>
+                <a href="{{ ticket.get_absolute_url }}"><img src="{% if ticket.image %}{{ ticket.image.url }}{% else %}{% static 'etrans/img/Capture.PNG' %}{% endif %}"></a>
+                <a href="{{ ticket.get_absolute_url }}">{{ ticket.name }}</a><br>
+            FCFA{{ ticket.price }} 
+            </div>
+        {% endfor %}
+        
+
+
+{% endblock %}

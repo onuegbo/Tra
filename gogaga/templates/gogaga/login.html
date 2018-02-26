@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+    <title>Gogaga</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+{% endblock %}
+
+  
+{% block body %}
+<p><h1>Welcome To the Login Page of Honorable Car Drivers</h1></p>
+        <h2>Login</h2>
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+        </form>
+ 
+{% endblock %}

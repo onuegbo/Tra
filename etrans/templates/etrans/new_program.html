@@ -1,0 +1,21 @@
+{% extends 'base1.html' %}
+
+
+{% block title %}Start a New Travel Program{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'etrans:home' %}">Company</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'etrans:details' company.pk %}">{{ company.company_name }}</a></li>
+  <li class="breadcrumb-item active">New Program</li>
+{% endblock %}
+
+{% block content %}
+
+<form method="post" >
+    {% csrf_token %}
+    {% include 'etrans/includes/form.html' %}
+    <button type="submit" class="btn btn-success">Post</button>
+  </form>
+  <!-- Name is used to retrieve the data on the server side -->
+{% endblock %}
+

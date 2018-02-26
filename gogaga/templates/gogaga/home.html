@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+  
+{% block head %}
+
+    <title>Gogaga</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+{% endblock %}
+
+  
+{% block body %}
+
+<div class="container">
+    <ol class="breadcrumb my-4">
+      <li class="breadcrumb-item active">Road Mongers</li>
+    </ol>
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Depart</th>
+          <th>Arrivee</th>
+          <th>Prix</th>
+          <th>Places</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pub in pubs %}
+          <tr>
+            <td>
+             {{ pub.departure }}
+              <small class="text-muted d-block"></small>
+            </td>
+            <td class="align-middle">{{ pub.arrival }}</td>
+            <td class="align-middle">{{ pub.price }}</td>
+            <td class="align-middle">{{ pub.number_seat }}</td>
+            <td class="align-middle"><a href="/gogaga/{{pub}}/">Reserver</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+ 
+{% endblock %}

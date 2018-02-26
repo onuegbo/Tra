@@ -1,0 +1,61 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+
+{% block title %}
+{{ company.company_name }} - {{ company.company_name  }}
+{% endblock %}
+
+
+
+{% block breadcrumb %}
+
+                <li class="breadcrumb-item"> <a href={% url 'etrans:home' %}>Compagnie</a></li>
+                <li class="breadcrumb-item active">{{company.name }}</li>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="card">
+ 
+
+        {% for product in products %}
+      
+        
+             <div class="card-header">
+                <img class="card-img-top" src="{% static "marcopolo.PNG" %}" alt="Card image cap">
+            </div>
+                <div class="card-body">
+                <h4 class="card-title">{{product.name}}</h4>
+                <!-- <p class="card-text">Some quick example text</p> -->
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Prix: </strong>{{product.price}}</li>
+                <!-- <li class="list-group-item"><strong>Date et l'heure de depart: </strong>{{product.departure_time}}</li> -->
+                <li class="list-group-item"><strong>Depart: </strong>{{product.departure}}</li>
+                <li class="list-group-item"><strong>Arrivee: </strong>{{product.arrival}}</li>
+                </ul>
+
+                {% for variant in product.variants.all %}
+                <a href="{{product.get_absolute_url}}" class="btn btn-danger">Continue<span class="badge badge-light">{{variant.get_stock_quantity}} places restante</span></a>
+                {% endfor %}
+
+            <br/>
+        {% empty %}
+            <div class="alert alert-info" role="alert">
+            Pas des publications de Voyages.</p>
+            </div>
+        {% endfor %}
+            
+        
+        
+    
+
+</div>
+    
+
+
+    
+    {% endblock %}

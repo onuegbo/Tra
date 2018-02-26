@@ -1,0 +1,82 @@
+{% extends 'base1.html' %}
+
+        {% block title %}  Votre Panier  {% endblock %}
+
+        
+        {% block breadcrumb %}
+        
+                        <li class="breadcrumb-item"> <a href={% url 'etrans:home' %}>Compagnie</a></li>
+                        <li class="breadcrumb-item active">Tickets</li>
+        {% endblock %}
+
+
+
+
+
+
+
+{% block content %}
+<div class="row">
+               
+  
+                
+                {% for item in cart %}
+                    {% with ticket=item.ticket %}
+                       
+
+                    <div class="col">Bus</div>
+                    <div class="col"> {{ ticket.bus_name }}</div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col-2">Places</div>
+                    <div class="col-8">
+                        <form action="{% url "cart:cart_add" ticket.id %}" method="post">
+                            {% csrf_token %}
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            <button type="submit" class="btn btn-primary">Mettre a jour</button>
+                        
+                        </form>
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col">Supprimer</div>
+                    <div class="col"> <a href="{% url "cart:cart_remove" ticket.id %}">Supprimer</a></div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col">Prix Unitaire</div>
+                    <div class="col"> Fcfa: {{ item.price }}</div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col">Total</div>
+                    <div class="col">Fcfa: {{ item.total_price }}</div>
+
+                    <div class="w-100"></div>
+                    
+                    {% endwith %}
+                {% endfor %}
+
+                <div class="col-8">Totaux</div>
+                <div class="col-4"> Fcfa: {{ cart.get_total_price }}</div>
+                
+               
+                <div class="w-100"></div>
+
+                <div class="col-9"></div>
+                <div class="col col-lg-2">
+                        
+                                 <a href="{% url "etrans:home" %}" class="btn btn-primary">Continue shopping</a>
+                                <a href="{% url "orders:order_create" %}" class="btn btn-danger">Checkout</a>
+                        
+                </div>
+
+            
+            
+</div>
+    
+{% endblock %}
+
